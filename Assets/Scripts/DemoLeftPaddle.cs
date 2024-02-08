@@ -33,16 +33,16 @@ public class DemoLeftPaddle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"we hit {collision.gameObject.name}");
-        
+        //Debug.Log($"we hit {collision.gameObject.name}");
+
         // get reference to paddle collider
         BoxCollider bc = GetComponent<BoxCollider>();
         Bounds bounds = bc.bounds;
         float maxX = bounds.max.x;
         float minX = bounds.min.x;
 
-        Debug.Log($"maxX = {maxX}, minY = {minX}");
-        Debug.Log($"x pos of ball is {collision.transform.position.x}");
+        //Debug.Log($"maxX = {maxX}, minY = {minX}");
+        //Debug.Log($"x pos of ball is {collision.transform.position.x}");
 
         float mod = -1f;
 

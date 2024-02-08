@@ -7,6 +7,7 @@ public class DemoBall : MonoBehaviour
 
     private Vector3 currentVelocity;
     private float paddleHitCount;
+    public GameObject manager;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +18,28 @@ public class DemoBall : MonoBehaviour
         paddleHitCount = 0;
     }
 
-    void ResetBall(float player)
+    public void ResetBall(double player)
     {
+
         Rigidbody rb = GetComponent<Rigidbody>();
+
+        Vector3 blank = new Vector3(0, 0, 0);
+
+        rb.AddForce(blank, ForceMode.VelocityChange);
+
+        
+        if (player == 0)
+        {
+            transform.rotation = new Quaternion(0, 0, -90 - (UnityEngine.Random.value * 180), 1);
+        }
+        else
+        {
+            transform.rotation = new Quaternion(0, 0, -90 + (UnityEngine.Random.value * 180), 1);
+        }
+
+
+        transform.position = new Vector3(0, (float)(40 - 20 * player), 0);
+
         rb.AddForce(transform.up * 500f, ForceMode.Force);
 
         paddleHitCount = 0;
@@ -57,9 +77,14 @@ public class DemoBall : MonoBehaviour
             currentVelocity = new Vector3(currentVelocity.x, -currentVelocity.y, currentVelocity.z);
 
             paddleHitCount++;
+            Debug.Log("Current Paddle Count: " + paddleHitCount);
 
-            rb.AddForce(currentVelocity * 10f * paddleHitCount, ForceMode.VelocityChange);
+            rb.AddForce(currentVelocity * 20f * paddleHitCount, ForceMode.VelocityChange);
 
+        }
+        else if (collision.gameObject.tag == "KillWall")
+        {
+            manager.GetComponent<GameManager>().BallScored();
         }
     }
 
