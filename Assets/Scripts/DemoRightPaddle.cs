@@ -20,7 +20,6 @@ public class DemoRightPaddle : MonoBehaviour
 
         Vector3 force = Vector3.right * horizontalValue * unitsPerSecond; // * unitsPerSecond * Time.deltaTime;
 
-
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.AddForce(force, ForceMode.Force);
     }

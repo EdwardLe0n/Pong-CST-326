@@ -19,7 +19,6 @@ public class DemoLeftPaddle : MonoBehaviour
         float verticalValue = Input.GetAxis("Vertical");
 
         Vector3 force = Vector3.right * verticalValue * unitsPerSec; // * unitsPerSecond * Time.deltaTime;
-        Debug.Log(force);
 
 
         Rigidbody rb = GetComponent<Rigidbody>();
