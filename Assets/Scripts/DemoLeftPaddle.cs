@@ -44,8 +44,15 @@ public class DemoLeftPaddle : MonoBehaviour
         Debug.Log($"maxX = {maxX}, minY = {minX}");
         Debug.Log($"x pos of ball is {collision.transform.position.x}");
 
-        Quaternion rotation = Quaternion.Euler(0f, 0f, -60f);
-        Vector3 bounceDirection = rotation * Vector3.up;
+        float mod = -1f;
+
+        if (UnityEngine.Random.value > 0.5)
+        {
+            mod *= -1;
+        }
+
+        Quaternion rotation = Quaternion.Euler(0f, 0f, mod * (UnityEngine.Random.value * 45f));
+        Vector3 bounceDirection = rotation * Vector3.down;
         
         if (collision.gameObject.tag == "Ball")
         {
